@@ -1,6 +1,10 @@
 class Friends(object):
     def __init__(self, connections):
-        pass
+        assert isinstance(connections, (tuple, list))
+        self.connections = set()
+        for friends in connections:
+            friends = sorted(friends)
+            self.connections.add(self.__format_connection(friends))
 
     def add(self, connection):
         pass
@@ -13,6 +17,10 @@ class Friends(object):
 
     def connected(self, friend):
         pass
+
+    @staticmethod
+    def __format_connection(friends):
+        return ''.join(friends)
 
 
 if __name__ == '__main__':
