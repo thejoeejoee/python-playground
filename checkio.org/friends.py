@@ -1,4 +1,6 @@
 class Friends(object):
+    CONNECTION_GLUE = '_'
+
     def __init__(self, connections):
         assert isinstance(connections, (tuple, list))
         self.connections = set()
@@ -34,14 +36,14 @@ class Friends(object):
                 connected.add(friends.pop())
         return connected
 
-    @staticmethod
-    def __encode_connection(friends):
-        return '-'.join(sorted(friends))
+    @classmethod
+    def __encode_connection(cls, friends):
+        return cls.CONNECTION_GLUE.join(sorted(friends))
 
-    @staticmethod
-    def __decode_connection(connection_key):
+    @classmethod
+    def __decode_connection(cls, connection_key):
         assert isinstance(connection_key, str)
-        return connection_key.split('-')
+        return connection_key.split(cls.CONNECTION_GLUE)
 
 
 if __name__ == '__main__':
