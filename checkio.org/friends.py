@@ -3,24 +3,45 @@ class Friends(object):
         assert isinstance(connections, (tuple, list))
         self.connections = set()
         for friends in connections:
-            friends = sorted(friends)
-            self.connections.add(self.__format_connection(friends))
+            self.connections.add(self.__encode_connection(friends))
 
-    def add(self, connection):
-        pass
+    def add(self, friends):
+        key = self.__encode_connection(friends)
+        if key in self.connections:
+            return False
+        self.connections.add(key)
+        return True
 
     def remove(self, connection):
-        pass
+        key = self.__encode_connection(connection)
+        if not key in self.connections:
+            return False
+        self.connections.remove(key)
+        return True
 
     def names(self):
-        pass
+        names = set()
+        for key_connection in self.connections:
+            map(lambda key: names.add(key), self.__decode_connection(key_connection))
+        return names
 
     def connected(self, friend):
-        pass
+        connected = set()
+        for connection in self.connections:
+            friends = self.__decode_connection(connection)
+            if friend in friends:
+                friends.remove(friend)
+                connected.add(friends.pop())
+        return connected
 
     @staticmethod
-    def __format_connection(friends):
-        return ''.join(friends)
+    def __encode_connection(friends):
+        return '-'.join(sorted(friends))
+
+    @staticmethod
+    def __decode_connection(connection_key):
+        assert isinstance(connection_key, str)
+        return connection_key.split('-')
 
 
 if __name__ == '__main__':
