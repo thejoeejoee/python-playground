@@ -1,14 +1,23 @@
 # -*- coding: utf-8 -*-
 from Tkconstants import LEFT, RIGHT, E, W, BOTH, END
-from Tkinter import Frame, Button, Tk, Listbox, mainloop, Entry, StringVar, Label
-from subprocess import Popen, PIPE
+from Tkinter import Frame, Button, Tk, Listbox, Entry, StringVar, Label
+from subprocess import Popen, PIPE, check_call, CalledProcessError
 from tkFileDialog import askdirectory
 from os.path import expanduser
 
+try:
+    check_call('which pep8', shell=True, stdout=PIPE, stderr=PIPE)
+except CalledProcessError as e:
+    print('PEP8 not found.')
+    exit(1)
 
 class Window(object):
     def __init__(self, master):
+
         self.master = master
+        self.master.wm_title('PEP8 checker')
+        self.master.resizable(False, True)
+
         self.frame = Frame(master)
         self.frame.pack(fill=BOTH, expand=1)
 
@@ -53,8 +62,7 @@ class Window(object):
 
 
 root = Tk()
-root.wm_title('PEP8 checker')
+setattr(root, 'run', lambda *args, **kwargs: root.mainloop(*args, **kwargs))
+
 app = Window(root)
-root.resizable(False, True)
-root.mainloop()
-mainloop()
+root.run()
