@@ -9,7 +9,9 @@ def sum_total_needed_length(boxes):
             tuple(
                 map(
                     lambda dimensions:
-                    2 * (sorted(dimensions)[0] + sorted(dimensions)[1]) + reduce(mul, dimensions),
+                    2 * (
+                        sorted(dimensions)[0] + sorted(dimensions)[1]
+                    ) + reduce(mul, dimensions, 1),
                     list(
                         map(
                             lambda box:

@@ -72,5 +72,5 @@ if __name__ == '__main__':
         except ValueError:
             pass
     for x in range(0, len(cesta)):
-        pprint(Hersik.post('/action', bot_id=Hersik.bot_id, action=cesta[x]).get('state'))
+        pprint(str(x)+'. '+Hersik.post('/action', bot_id=Hersik.bot_id, action=cesta[x]).get('state'))
         sleep(delay)
