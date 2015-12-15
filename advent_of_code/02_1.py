@@ -2,7 +2,7 @@ from operator import mul
 from sys import argv
 from functools import reduce
 
-# TODO: isn't correct
+
 def sum_total_needed_length(boxes):
     return \
         sum(
