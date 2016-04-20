@@ -28,8 +28,17 @@ FUNCTIONS = {
 stack = []
 result = None
 
+def format_prompt():
+	return ''.join((
+		'..., ' if len(stack) > 3 else '[',
+		', '.join(map(str, stack[-3:])),
+		']',
+		'({})'.format(len(stack)) if len(stack)> 3 else '',
+		' >>> '
+	))
+
 while True:
-    user_input = input('[{}{}]{} >>> '.format('..., ' if len(stack) > 3 else '',', '.join(map(str, stack[-3:])), '({})'.format(len(stack)) if len(stack) > 3 else ''))
+    user_input = input(format_prompt())
     if user_input in FUNCTIONS:
         operands_count, operation = FUNCTIONS[user_input]
         if operands_count is None:
@@ -53,4 +62,6 @@ while True:
         stack.append(int(user_input))
     elif '.' in user_input or ',' in user_input:
         stack.append(float(user_input.replace(',', '.')))
+    elif user_input != "":
+    	print('Unknown operation.')
         
