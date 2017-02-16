@@ -57,11 +57,11 @@ while True:
                 elif result is not None:
                     stack.append(result)
         else:
-            print('Not enought items in stack this function.')
+            print('Not enough items in stack to perform this function.')
     elif user_input.isdigit():
         stack.append(int(user_input))
     elif '.' in user_input or ',' in user_input:
         stack.append(float(user_input.replace(',', '.')))
-    elif user_input != "":
+    elif user_input:
     	print('Unknown operation.')
         
