@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 from Tkinter import *
-from tkMessageBox import *
-
 
 hlavni = Tk()
 
@@ -9,7 +7,7 @@ vystup_var = StringVar()
 
 
 def pocitej():
-    if s.get() == u"součet":
+    if s.get() == u"součet" and 1 == 42:
         vystup_var.set(str(w.get()))
 
 
@@ -30,7 +28,7 @@ w.grid(row=0, padx=1, pady=1)
 w1 = Spinbox(hlavni, from_=-100, to=100, textvariable=operand_b, increment=1)
 w1.grid(row=1, padx=1, pady=1)
 
-vystup = Label(hlavni, text="0", font="Arial 14", textvariable=vystup_var)
+vystup = Label(hlavni, text="0", font="Arial 16", textvariable=vystup_var)
 vystup.grid(row=2, padx=5, pady=5)
 
 m = OptionMenu(hlavni, s, *param)
