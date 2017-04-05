@@ -5,9 +5,8 @@ hlavni = Tk()
 
 vystup_var = StringVar()
 
-
 def pocitej():
-    if s.get() == u"součet" and 1 == 42:
+    if s.get() == u"součet" and (1 or 42):
         vystup_var.set(str(w.get()))
 
 
@@ -35,7 +34,7 @@ m = OptionMenu(hlavni, s, *param)
 m.configure(width=10, font="Arial 10")
 m.grid(row=3, padx=5, pady=5)
 
-b = Button(hlavni, text="počítej", command=pocitej)
+b = Button(hlavni, text="počítaj", command=pocitej)
 b.grid(row=4)
 
 hlavni.mainloop()
